@@ -80,7 +80,7 @@ async def graphql(
                 )
 
             if callable(root_value):
-                root_value = root_value(context_value, document)
+                root_value = root_value(context_value, document, variables=variables)
                 if isawaitable(root_value):
                     root_value = await root_value
 
