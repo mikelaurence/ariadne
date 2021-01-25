@@ -163,7 +163,7 @@ def graphql_sync(
                 )
 
             if callable(root_value):
-                root_value = root_value(context_value, document)
+                root_value = root_value(context_value, document, variables=variables)
                 if isawaitable(root_value):
                     ensure_future(root_value).cancel()
                     raise RuntimeError(
@@ -247,7 +247,7 @@ async def subscribe(
             )
 
         if callable(root_value):
-            root_value = root_value(context_value, document)
+            root_value = root_value(context_value, document, variables=variables)
             if isawaitable(root_value):
                 root_value = await root_value
 
